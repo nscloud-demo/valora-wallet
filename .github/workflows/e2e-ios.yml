@@ -37,6 +37,11 @@ jobs:
             E2E_WALLET_MULTIPLE_VERIFIED_MNEMONIC:projects/1027349420744/secrets/E2E_WALLET_MULTIPLE_VERIFIED_MNEMONIC
             E2E_WALLET_12_WORDS_MNEMONIC:projects/1027349420744/secrets/E2E_WALLET_12_WORDS_MNEMONIC
       - uses: actions/checkout@v4
+      - name: Install missing utils from namespace machine
+        run: |
+          brew tap wix/brew
+          brew install applesimutils
+
       # - uses: ./.github/actions/yarn-install
       - uses: actions/setup-node@v4
         id: setup-node
