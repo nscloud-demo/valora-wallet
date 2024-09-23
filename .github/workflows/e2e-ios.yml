@@ -18,7 +18,7 @@ jobs:
       # See https://docs.github.com/en/actions/security-guides/encrypted-secrets#using-encrypted-secrets-in-a-workflow
       SECRETS_AVAILABLE: ${{ secrets.SECRETS_AVAILABLE }}
     name: iOS (${{ inputs.ios-version  }})
-    runs-on: namespace-profile-macos
+    runs-on: namespace-profile-macos-xxl
     steps:
       - uses: google-github-actions/auth@v2
         if: ${{ env.SECRETS_AVAILABLE }}
