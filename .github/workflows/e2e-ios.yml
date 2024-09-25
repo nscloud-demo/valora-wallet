@@ -21,14 +21,10 @@ jobs:
     strategy:
       matrix:
         runner: [macos-latest, namespace-profile-macos-xxl]
-        workers: [1, 2, 4, 6]
-        exclude:
-          - runner: namespace-profile-macos-xxl
-            workers: 2
-          - runner: namespace-profile-macos-xxl
-            workers: 4
+        workers: [6]
     runs-on: ${{ matrix.runner }}
     steps:
+      - run: sudo mdutil -a -i off /
       - uses: google-github-actions/auth@v2
         if: ${{ env.SECRETS_AVAILABLE }}
         with:
@@ -125,6 +121,7 @@ jobs:
           --debug-synchronization 10000
           --maxWorkers ${{ matrix.workers }}
           --retries 3
+          --headless
         timeout-minutes: 60
       - name: Publish iOS JUnit Report
         if: always()
