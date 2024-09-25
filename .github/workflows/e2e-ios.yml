@@ -12,14 +12,6 @@ on:
         type: string
 
 jobs:
-  ssh:
-    runs-on: macos-latest
-    steps:
-      - name: Breakpoint if tests failed
-        uses: namespacelabs/breakpoint-action@v0
-        with:
-          duration: 30m
-          authorized-users: edganiukov,hugosantos,n-g,htr,nichtverstehen,gmichelo
   ios:
     env:
       # `if` conditions can't directly access secrets, so we use a workaround
@@ -28,8 +20,8 @@ jobs:
     name: iOS (${{ matrix.workers }} ${{ matrix.runner }} ${{ inputs.ios-version  }})
     strategy:
       matrix:
-        runner: [macos-latest, namespace-profile-macos-xxl]
-        workers: [6]
+        runner: [namespace-profile-macos-xxl]
+        workers: [1, 6]
     runs-on: ${{ matrix.runner }}
     steps:
       - run: sudo mdutil -a -i off /
