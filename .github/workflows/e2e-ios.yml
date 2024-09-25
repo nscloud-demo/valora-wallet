@@ -17,8 +17,17 @@ jobs:
       # `if` conditions can't directly access secrets, so we use a workaround
       # See https://docs.github.com/en/actions/security-guides/encrypted-secrets#using-encrypted-secrets-in-a-workflow
       SECRETS_AVAILABLE: ${{ secrets.SECRETS_AVAILABLE }}
-    name: iOS (${{ inputs.ios-version  }})
-    runs-on: namespace-profile-macos-xxl
+    name: iOS (${{ matrix.workers }} ${{ matrix.runner }} ${{ inputs.ios-version  }})
+    strategy:
+      matrix:
+        runner: [macos-latest, namespace-profile-macos-xxl]
+        workers: [1, 2, 4, 6]
+        exclude:
+          - runner: namespace-profile-macos-xxl
+            workers: 2
+          - runner: namespace-profile-macos-xxl
+            workers: 4
+    runs-on: ${{ matrix.runner }}
     steps:
       - uses: google-github-actions/auth@v2
         if: ${{ env.SECRETS_AVAILABLE }}
@@ -114,7 +123,7 @@ jobs:
           --record-logs=failing
           --loglevel info
           --debug-synchronization 10000
-          --maxWorkers 5
+          --maxWorkers ${{ matrix.workers }}
           --retries 3
         timeout-minutes: 60
       - name: Publish iOS JUnit Report
