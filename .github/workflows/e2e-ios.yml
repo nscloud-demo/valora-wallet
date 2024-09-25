@@ -21,7 +21,7 @@ jobs:
     strategy:
       matrix:
         runner: [namespace-profile-macos-xxl]
-        workers: [1, 6]
+        workers: [1, 2, 6]
     runs-on: ${{ matrix.runner }}
     steps:
       - run: sudo mdutil -a -i off /
