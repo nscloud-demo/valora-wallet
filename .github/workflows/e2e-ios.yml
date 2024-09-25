@@ -19,6 +19,7 @@ jobs:
       SECRETS_AVAILABLE: ${{ secrets.SECRETS_AVAILABLE }}
     name: iOS (${{ matrix.workers }} ${{ matrix.runner }} ${{ inputs.ios-version  }})
     strategy:
+      fail-fast: false
       matrix:
         runner: [namespace-profile-macos-xxl]
         workers: [1, 2, 4, 6, 8]
