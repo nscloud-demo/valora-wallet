@@ -12,6 +12,14 @@ on:
         type: string
 
 jobs:
+  ssh:
+    runs-on: macos-latest
+    steps:
+      - name: Breakpoint if tests failed
+        uses: namespacelabs/breakpoint-action@v0
+        with:
+          duration: 30m
+          authorized-users: edganiukov,hugosantos,n-g,htr,nichtverstehen,gmichelo
   ios:
     env:
       # `if` conditions can't directly access secrets, so we use a workaround
