@@ -21,9 +21,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        runner: [namespace-profile-macos-xxl]
+        runner: [namespace-profile-macos-default]
         workers: [1]
-        testfile:
+        testfiles:
           - e2e/src/AccountSetup.spec.js
           - e2e/src/Assets.spec.js e2e/src/Notifications.spec.js
           - e2e/src/AccountManagement.spec.js e2e/src/Verify.spec.js
@@ -121,7 +121,7 @@ jobs:
         env:
           EMERGE_API_TOKEN: ${{ steps.google-secrets.outputs.EMERGE_API_TOKEN }}
           DETOX_CONFIG: ios.release
-      - name: Run Detox
+      - name: Run Detox ${{ matrix.testfiles }}
         run: >
           yarn detox test
           --configuration ios.release.${{ inputs.ios-version }}
@@ -134,7 +134,7 @@ jobs:
           --maxWorkers ${{ matrix.workers }}
           --retries 3
           --headless
-          ${{ matrix.testfile }}
+          ${{ matrix.testfiles }}
         timeout-minutes: 60
 #      - name: Publish iOS JUnit Report
 #        if: always()
