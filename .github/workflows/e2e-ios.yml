@@ -136,24 +136,25 @@ jobs:
           --headless
           ${{ matrix.testfile }}
         timeout-minutes: 60
-      - name: Publish iOS JUnit Report
-        if: always()
-        uses: mikepenz/action-junit-report@v4
-        with:
-          check_name: iOS (${{ inputs.ios-version }}) e2e Test Report
-          report_paths: 'e2e/test-results/junit.xml'
-      - name: 'Upload iOS E2E Artifacts'
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: ios-${{ inputs.ios-version }}-e2e-artifact
-          path: e2e/artifacts
-      - name: 'Upload iOS E2E HTML Report'
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: ios-${{ inputs.ios-version }}-test-report
-          path: e2e/test-results
-      - name: 'Close simulators'
-        if: always()
-        run: xcrun simctl shutdown all
+#      - name: Publish iOS JUnit Report
+#        if: always()
+#        uses: mikepenz/action-junit-report@v4
+#        with:
+#          check_name: iOS (${{ inputs.ios-version }}) e2e Test Report
+#          report_paths: 'e2e/test-results/junit.xml'
+#      - name: 'Upload iOS E2E Artifacts'
+#        if: failure()
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: ios-${{ inputs.ios-version }}-e2e-artifact
+#          path: e2e/artifacts
+#      - name: 'Upload iOS E2E HTML Report'
+#        if: always()
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: ios-${{ inputs.ios-version }}-test-report
+#          path: e2e/test-results
+#      - name: 'Close simulators'
+#        if: always()
+#        run: xcrun simctl shutdown all
+#
