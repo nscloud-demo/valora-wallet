@@ -24,23 +24,15 @@ jobs:
         runner: [namespace-profile-macos-default]
         workers: [1]
         testfile:
-          - e2e/src/AccountManagement.spec.js
           - e2e/src/AccountSetup.spec.js
-          - e2e/src/Assets.spec.js
-          - e2e/src/CeloPage.spec.js
-          - e2e/src/DeepLinkSend.spec.js
-          - e2e/src/Discover.spec.js
-          - e2e/src/FiatConnectTransferOut.spec.js
-          - e2e/src/HomeFeed.spec.js
-          - e2e/src/Notifications.spec.js
-          - e2e/src/OffRamps.spec.js
-          - e2e/src/OnRamps.spec.js
-          - e2e/src/Pin.spec.js
-          - e2e/src/QRScanner.spec.js
-          - e2e/src/SecureSend.spec.js
-          - e2e/src/Send.spec.js
-          - e2e/src/Verify.spec.js
-          - e2e/src/WalletConnect.spec.js
+          - e2e/src/Assets.spec.js e2e/src/Notifications.spec.js
+          - e2e/src/AccountManagement.spec.js e2e/src/Verify.spec.js
+          - e2e/src/Send.spec.js e2e/src/CeloPage.spec.js
+          - e2e/src/DeepLinkSend.spec.js e2e/src/SecureSend.spec.js
+          - e2e/src/Discover.spec.js e2e/src/OffRamps.spec.js
+          - e2e/src/FiatConnectTransferOut.spec.js e2e/src/HomeFeed.spec.js
+          - e2e/src/OnRamps.spec.js e2e/src/Pin.spec.js
+          - e2e/src/QRScanner.spec.js e2e/src/WalletConnect.spec.js
 
     runs-on: ${{ matrix.runner }}
     steps:
