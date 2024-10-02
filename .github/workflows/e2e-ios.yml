@@ -22,7 +22,7 @@ jobs:
       fail-fast: false
       matrix:
         runner: [namespace-profile-macos-xxl]
-        workers: [2]
+        workers: [1]
         testfile:
           - e2e/src/AccountSetup.spec.js
           - e2e/src/Assets.spec.js e2e/src/Notifications.spec.js
